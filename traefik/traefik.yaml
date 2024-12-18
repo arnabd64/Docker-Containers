@@ -18,4 +18,6 @@ api:
 log:
   level: INFO
 
-accessLog: {}
+accessLog:
+  format: json
+  filePath: /var/log/access.log
