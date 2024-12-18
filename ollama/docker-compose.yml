@@ -1,0 +1,18 @@
+networks:
+  docker-net:
+    external: true
+
+services:
+  ollama:
+    restart: unless-stopped
+    image: ollama/ollama:latest
+    ports:
+      - 11434:11434
+    networks:
+      - docker-net
+    volumes:
+      - ./models:/root/.ollama
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.ollama.rule=Host(`ollama.localhost`)
+      - traefik.http.routers.ollama.entrypoints=web
